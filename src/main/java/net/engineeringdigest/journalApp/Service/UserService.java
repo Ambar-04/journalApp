@@ -29,21 +29,19 @@ public class UserService {
     private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     //**
-    public boolean createNewUser(User user){
+    public User createNewUser(User user){
         //To save new user's password in encoded form
-        try{
+
             String encodedPassword = passwordEncoder.encode(user.getPassword());
             user.setPassword(encodedPassword);
             user.setRoles(Arrays.asList("USER"));
             userRepository.save(user);
             log.debug("HAHA");
             log.info("HAHA");
-            log.warn("HAHA");
-            log.error("HAHA");
-            return true;
-        }catch (Exception e){
-            return false;
-        }
+//            log.warn("HAHA");
+//            log.error("HAHA");
+            return user;
+
     }
 
     public void createNewAdmin(User user){
